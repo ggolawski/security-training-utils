@@ -26,13 +26,13 @@ public class RSAEncryption {
 	    
 	    // Encrypt the message
 	    System.out.println("Encrypting...");
-        cipher.init(Cipher.ENCRYPT_MODE, privateKey);  
+        cipher.init(Cipher.ENCRYPT_MODE, publicKey);  
         byte[] cipherText = cipher.doFinal(text.getBytes());
         System.out.println("Encrypted message: " + Hex.encodeHexString(cipherText));
         
         // Decrypt the message
         System.out.println("Decrypting...");
-        cipher.init(Cipher.DECRYPT_MODE, publicKey);
+        cipher.init(Cipher.DECRYPT_MODE, privateKey);
         byte[] plainText = cipher.doFinal(cipherText);
         System.out.println("Decrypted message: " + new String(plainText));
 	}

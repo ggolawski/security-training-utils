@@ -15,7 +15,7 @@ public class AES {
 		String input = "Very secret text";
 		System.out.println("Beginning; text to encrypt: " + input);
 
-		// Initialize random and generate key
+		// Generate random key
 		System.out.println("Generating random symmetric key...");
 		SecretKey key = Utils.generateKey("AES", 128);
 		System.out.println("Secret key: " + Hex.encodeHexString(key.getEncoded()));

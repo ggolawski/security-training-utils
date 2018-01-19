@@ -3,28 +3,21 @@ package org.ggolawski.security.utils.crypto;
 import java.io.IOException;
 import java.nio.charset.Charset;
 import java.security.GeneralSecurityException;
-import java.security.SecureRandom;
 
 import javax.crypto.Cipher;
-import javax.crypto.KeyGenerator;
 import javax.crypto.SecretKey;
 import javax.crypto.spec.GCMParameterSpec;
 
 import org.apache.commons.codec.binary.Hex;
 
 public class AES {
-	private static final int AES_KEY_SIZE = 128; // in bits
-
 	public static void main(String[] args) throws GeneralSecurityException, IOException {
 		String input = "Very secret text";
 		System.out.println("Beginning; text to encrypt: " + input);
 
 		// Initialize random and generate key
 		System.out.println("Generating random symmetric key...");
-		SecureRandom random = SecureRandom.getInstanceStrong();
-		KeyGenerator keyGen = KeyGenerator.getInstance("AES");
-		keyGen.init(AES_KEY_SIZE, random);
-		SecretKey key = keyGen.generateKey();
+		SecretKey key = Utils.generateKey("AES", 128);
 		System.out.println("Secret key: " + Hex.encodeHexString(key.getEncoded()));
 
 		// Encrypt
@@ -51,4 +44,6 @@ public class AES {
 		byte[] plainText = cipher.doFinal(cipherText);
 		System.out.println("Decrypted message: " + new String(plainText, Charset.forName("ASCII")));
 	}
+
+	
 }
